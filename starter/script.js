@@ -176,7 +176,8 @@ class App {
 
     // Render workout on map as marker
 
-    this._renderWorkout(workout);
+    this._renderWorkoutMarker(workout);
+    console.log('workout.coords: ', workout.coords);
 
     // Render workout on list
 
