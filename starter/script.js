@@ -68,6 +68,7 @@ const inputDistance = document.querySelector('.form__input--distance');
 const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
+const buttonDelete = document.querySelector('.btn_delete-all');
 
 class App {
   #map;
@@ -86,6 +87,7 @@ class App {
     form.addEventListener('submit', this._newWorkout.bind(this));
     inputType.addEventListener('change', this._toggleElevationField);
     containerWorkouts.addEventListener('click', this._moveToPopup.bind(this));
+    buttonDelete.addEventListener('click', this.reset.bind(this));
   }
 
   _getPosition() {
@@ -290,12 +292,15 @@ class App {
 
   _setLocalStorage() {
     localStorage.setItem('workouts', JSON.stringify(this.#workouts));
+    buttonDelete.classList.remove('hidden');
   }
 
   _getLocalStorage() {
     const data = JSON.parse(localStorage.getItem('workouts'));
 
     if (!data) return;
+
+    buttonDelete.classList.remove('hidden');
 
     this.#workouts = data;
 
